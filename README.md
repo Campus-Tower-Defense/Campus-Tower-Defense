@@ -1,4 +1,4 @@
-# Campus Cannon Chronicle
+# Campus Cannon Chronicles
 
 ## Zielgruppe: PEGI 12 (Ab 12 Jahren)
 
