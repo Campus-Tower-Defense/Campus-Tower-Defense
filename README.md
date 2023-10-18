@@ -1,4 +1,4 @@
-# <p style="font-size: larger;">C</p>ampus **C**annon **C**hronicle
+# <span style="font-size: 36px;">C</span>ampus <span style="font-size: 36px;">C</span>annon <span style="font-size: 36px;">C</span>hronicle
 
 ## Zielgruppe: PEGI 12 (Ab 12 Jahren)
 
