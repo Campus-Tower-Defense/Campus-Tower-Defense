@@ -69,4 +69,9 @@ Verhindere, dass die Geister das Labor erreichen/zerstören.
 
 - First-Person-Perspektive
 - Laufen durch die Karte und Platzieren von Türmen
-- Besiegte
+- Besiegte Geister geben nach ihrem Tod ihr ehemaliges Militärwissen frei. Der Spieler kann dieses Wissen für neue Tower oder Towerverbesserungen nutzen. Je höher der ehemalige Militärrang des Geistes, desto wertvoller ist das Wissen.
+
+## Technisch:
+
+- Entwickelt für die Valve Index
+- Entwickelt in Unity
