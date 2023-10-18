@@ -5,13 +5,13 @@
 ### Personas:
 
 1. **Anna, die Abenteurerin (Alter: 12)**
-   - *Persönlichkeit*: Begeistert von der VR-Welt, aufgeschlossen für neue Spielerfahrungen.
+   - *Persönlichkeit*: Anna freut es, die Geister in die Flucht zu schlagen und findet es aufregend, dieses Abenteuer zu bestehen. Sie ist neu im Gaming und sehr begeistert von der VR-Welt.
 
 2. **Liam, der Stratege (Alter: 18)**
-   - *Persönlichkeit*: Strategischer Spieler, Herausforderungen reizen ihn, VR ist noch neu.
+   - *Persönlichkeit*: Liam schätzt besonders die Herausforderung und es macht ihm Spaß, sich diesen durch sein strategisches Können zu stellen. Er ist ein etablierter Gamer, aber VR ist für ihn noch recht neu.
 
 3. **Oliver, der Gelegenheitsspieler (Alter: 35)**
-   - *Persönlichkeit*: Genießt ausgewogene Spielerlebnisse, VR bietet Abwechslung.
+   - *Persönlichkeit*: Oliver hat nicht viel Zeit zum Spielen, aber wenn er es tut, will er ein ausgewogenes Spielerlebnis. Ihm gefällt, dass das Spiel eine Mischung aus Spaß und Herausforderung bereitstellt, ohne zu komplex zu sein. Er genießt das VR-Erlebnis, da er so kurze Pausen vom Alltag erhält.
 
 ## Hintergrundgeschichte:
 
