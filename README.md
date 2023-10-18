@@ -1,4 +1,4 @@
-# Campus Tower Defence
+# **C**ampus **C**annon **C**hronicle
 
 ## Zielgruppe: PEGI 12 (Ab 12 Jahren)
 
