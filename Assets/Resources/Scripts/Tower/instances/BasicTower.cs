@@ -11,7 +11,7 @@ public class BasicTower : Tower
     {
         if (enemiesInRange.Count > 0)
         {
-            enemiesInRange[0].GetComponent<Enemy>().TakeDamage(Damage);
+            enemiesInRange[0].GetComponent<Enemy>().Damage(Damage);
         }
     }
 
