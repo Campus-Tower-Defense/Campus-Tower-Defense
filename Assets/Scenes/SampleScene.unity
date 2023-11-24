@@ -909,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -930,6 +930,7 @@ GameObject:
   - component: {fileID: 1642609822}
   - component: {fileID: 1642609821}
   - component: {fileID: 1642609820}
+  - component: {fileID: 1642609825}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -1573,6 +1574,23 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6447266317303757838, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1642609825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642609818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918f29efc3ecbf84c840c69fdd220276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 3812096164500156943, guid: dd29d3bc356f87d42944500aa54d5314, type: 3}
+  gridLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  towerOffset: 0.1
 --- !u!1001 &1673482355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1849,6 +1867,7 @@ GameObject:
   - component: {fileID: 2063983222}
   - component: {fileID: 2063983221}
   - component: {fileID: 2063983220}
+  - component: {fileID: 2063983225}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Untagged
@@ -2492,6 +2511,23 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -1636515391019944688, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &2063983225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063983218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918f29efc3ecbf84c840c69fdd220276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 3812096164500156943, guid: dd29d3bc356f87d42944500aa54d5314, type: 3}
+  gridLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  towerOffset: 0.1
 --- !u!1001 &8691235460034238344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2503,6 +2539,10 @@ PrefabInstance:
     - target: {fileID: 1968174489902592415, guid: f4e81aef3e0147940ad6bab46494d5a5, type: 3}
       propertyPath: m_Name
       value: Grid
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968174489902592415, guid: f4e81aef3e0147940ad6bab46494d5a5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1968174489902592415, guid: f4e81aef3e0147940ad6bab46494d5a5, type: 3}
       propertyPath: m_TagString
@@ -2522,7 +2562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6767724390465615771, guid: f4e81aef3e0147940ad6bab46494d5a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6767724390465615771, guid: f4e81aef3e0147940ad6bab46494d5a5, type: 3}
       propertyPath: m_LocalRotation.w
