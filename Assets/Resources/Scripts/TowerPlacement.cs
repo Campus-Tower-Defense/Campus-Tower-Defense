@@ -28,7 +28,7 @@ public class TowerPlacement : MonoBehaviour
             Vector3 towerPosition = hit.point;
             towerPosition.y = towerPrefab.transform.position.y; // Align with the ground
 
-            // Round the position to prevent floating-point inaccuracies
+            // Round the position to prevent inaccuracies
             towerPosition = RoundPosition(towerPosition);
 
             // Check if the grid cell is already occupied
@@ -42,7 +42,6 @@ public class TowerPlacement : MonoBehaviour
             }
             else
             {
-                // There's already a tower in this cell, handle accordingly (e.g., display a message)
                 Debug.Log("Cannot place tower here - cell is already occupied.");
             }
         }
