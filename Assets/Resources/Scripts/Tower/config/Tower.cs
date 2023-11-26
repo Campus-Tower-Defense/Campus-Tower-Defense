@@ -13,7 +13,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected int range;
     [SerializeField] protected string description;
     [SerializeField] protected string towerName;
-    private float timeSinceLastAction;
+    protected float timeSinceLastAction;
     private float actionInterval;
 
     [SerializeField]

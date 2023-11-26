@@ -1,93 +1,97 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private int health = 100;
-    [SerializeField] private int currencyDrop = 10;
-    [SerializeField] private float towerAttackRadius = 10f;
-    [SerializeField] private float towerAttackFrequency = 1f;
+    [SerializeField] protected int health = 100;
+    [SerializeField] protected int currencyDrop = 10;
+    [SerializeField] protected float attackRadius = 1f;
+    [SerializeField] protected float attackFrequency = 1f;
 
-    #pragma warning disable 0414
-    [SerializeField] private int damage = 20;
-    private float timeSinceLastAttack = 0f;
+    [SerializeField] protected int damage = 20;
+
+    protected float timeSinceLastAttack = 0f;
+
+    private GameObject goal;
+
+    private bool inAttackMode = false;
 
     private GameObject currencyPrefab;
+
     public event Action<GameObject> OnDeath;
 
     private List<EnemyBuff> appliedBuffs = new List<EnemyBuff>();
-    private List<GameObject> towersInRange = new List<GameObject>();
 
-    public int Health { get { return health; } }
-    public int CurrencyDrop { get { return currencyDrop; } }
+    private NavMeshAgent navMeshAgent;
+
+    public int Health => health;
+    public int CurrencyDrop => currencyDrop;
     public List<EnemyBuff> AppliedBuffs => appliedBuffs;
 
-    /// <summary>
-    /// Initializes enemy stats. Must be implemented in derived classes.
-    /// </summary>
     protected abstract void InitializeStats();
-
-    /// <summary>
-    /// Defines the passive ability of the enemy. Must be implemented in derived classes.
-    /// </summary>
     protected abstract void PassiveAbility();
-
-    /// <summary>
-    /// Defines the attack action of the enemy. Must be implemented in derived classes.
-    /// </summary>
     protected abstract void AttackAction();
+
+    public void SetGoal(GameObject newGoal)
+    {
+        goal = newGoal;
+    }
 
     private void Start()
     {
-        currencyPrefab = Resources.Load<GameObject>("Prefabs/General/Currency");
         InitializeStats();
-        SetupAttackRadius();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if (navMeshAgent == null)
+        {
+            Debug.LogError("NavMeshAgent not found");
+        }
+        currencyPrefab = Resources.Load<GameObject>("Prefabs/General/Currency");
+        if (currencyPrefab == null)
+        {
+            Debug.LogError("Currency prefab not found");
+        }
     }
 
     private void Update()
     {
         PassiveAbility();
-        timeSinceLastAttack += Time.deltaTime;
-        if (timeSinceLastAttack >= 1f / towerAttackFrequency)
+
+        if (goal != null)
         {
-            AttackTowers();
-            timeSinceLastAttack = 0f;
+            float distanceToGoal = Vector3.Distance(transform.position, goal.transform.position);
+
+            if (distanceToGoal <= attackRadius)
+            {
+                // Der Enemy ist im Angriffsmodus
+                inAttackMode = true;
+
+                // Deaktiviere den NavMeshAgent, wenn in den Angriffsmodus gewechselt wird
+                if (navMeshAgent != null)
+                {
+                    navMeshAgent.enabled = false;
+                }
+            }
+
+            if (inAttackMode)
+            {
+                timeSinceLastAttack += Time.deltaTime;
+                if (timeSinceLastAttack >= 1f / attackFrequency)
+                {
+                    AttackGoal();
+                    timeSinceLastAttack = 0f;
+                }
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void AttackGoal()
     {
-        if (other.gameObject.CompareTag("Tower"))
-        {
-            towersInRange.Add(other.gameObject);
-        }
+        // Führe die Basic-Attacke auf das Ziel aus
+        // goal.GetComponent<Goal>().Damage(damage);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Tower"))
-        {
-            towersInRange.Remove(other.gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Attacks towers within range.
-    /// </summary>
-    private void AttackTowers()
-    {
-        foreach (var tower in towersInRange)
-        {
-            // Implement the logic to attack the tower.
-            AttackAction();
-        }
-    }
-
-    /// <summary>
-    /// Applies damage to the enemy and checks for death.
-    /// </summary>
-    /// <param name="damageAmount">The amount of damage to apply.</param>
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
@@ -97,49 +101,31 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Handles the death of the enemy, including currency spawning.
-    /// </summary>
     private void Die()
     {
         OnDeath?.Invoke(this.gameObject);
-        if (currencyPrefab != null)
+
+        for (int i = 0; i < currencyDrop; i++)
         {
-            Instantiate(currencyPrefab, transform.position, Quaternion.identity);
+            Vector3 spawnPosition = transform.position + UnityEngine.Random.insideUnitSphere * 2f;
+            spawnPosition.y = 0f;
+
+            Instantiate(currencyPrefab, spawnPosition, Quaternion.identity);
         }
+
         Destroy(this.gameObject);
     }
 
-    /// <summary>
-    /// Adds a buff to the enemy.
-    /// </summary>
-    /// <param name="buff">The buff to add.</param>
-    protected void AddBuff(EnemyBuff buff)
+    public void AddBuff(EnemyBuff buff)
     {
         appliedBuffs.Add(buff);
+        buff.Apply(this);
     }
 
-    /// <summary>
-    /// Removes a buff from the enemy.
-    /// </summary>
-    /// <param name="buff">The buff to remove.</param>
-    protected void RemoveBuff(EnemyBuff buff)
+    public void RemoveBuff(EnemyBuff buff)
     {
         appliedBuffs.Remove(buff);
-    }
-
-    /// <summary>
-    /// Sets up the attack radius of the enemy.
-    /// </summary>
-    private void SetupAttackRadius()
-    {
-        SphereCollider collider = gameObject.GetComponent<SphereCollider>();
-        if (collider == null)
-        {
-            collider = gameObject.AddComponent<SphereCollider>();
-        }
-        collider.isTrigger = true;
-        collider.radius = towerAttackRadius;
+        buff.Remove(this);
     }
 
     [System.Serializable]
@@ -162,10 +148,6 @@ public abstract class Enemy : MonoBehaviour
         public string BuffName => buffName;
         public string BuffDescription => buffDescription;
 
-        /// <summary>
-        /// Applies the buff to the enemy.
-        /// </summary>
-        /// <param name="enemy">The enemy to which the buff will be applied.</param>
         public void Apply(Enemy enemy)
         {
             if (!enemy.AppliedBuffs.Contains(this))
@@ -175,10 +157,6 @@ public abstract class Enemy : MonoBehaviour
             }
         }
 
-        /// <summary>
-        /// Removes the buff from the enemy.
-        /// </summary>
-        /// <param name="enemy">The enemy from which the buff will be removed.</param>
         public void Remove(Enemy enemy)
         {
             if (enemy.AppliedBuffs.Contains(this))

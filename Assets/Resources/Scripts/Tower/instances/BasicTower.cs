@@ -5,13 +5,47 @@ using UnityEngine;
 public class BasicTower : Tower
 {
 
+    private bool isTowerActive = true;
 
+    [SerializeField]
+    private GameObject top;
 
+    protected override void Start()
+    {
+        top = gameObject.transform.Find("Top").gameObject;
+        if (top == null)
+        {
+            Debug.LogError("Tower-Top not found");
+        }
+        //call super start
+        base.Start();
+    }
     protected override void TowerAction()
     {
+        isTowerActive = true;
         if (enemiesInRange.Count > 0)
         {
+            RotateTowardsEnemy(enemiesInRange[0].transform.position);
+
+            //shoot enemy
             enemiesInRange[0].GetComponent<Enemy>().Damage(Damage);
+        }
+
+        timeSinceLastAction = Time.deltaTime;
+        isTowerActive = false;
+    }
+
+    private void RotateTowardsEnemy(Vector3 enemyPosition)
+    {
+        // Berechne die Richtung zum Gegner auf der 2D-Ebene
+        Vector3 direction = enemyPosition - top.transform.position;
+        direction.y = 0f; // Setze die y-Komponente auf 0, um nur auf der horizontalen Ebene zu rotieren
+
+        // Drehe das Objekt top in die berechnete Richtung
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            top.transform.rotation = Quaternion.RotateTowards(top.transform.rotation, targetRotation, Time.deltaTime * this.frequency);
         }
     }
 
