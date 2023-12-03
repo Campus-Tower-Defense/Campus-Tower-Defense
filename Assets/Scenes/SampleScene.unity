@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 160329696}
   - component: {fileID: 160329695}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 823352460}
   - component: {fileID: 823352459}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Tower2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2124,11 +2124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918f29efc3ecbf84c840c69fdd220276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 3812096164500156943, guid: dd29d3bc356f87d42944500aa54d5314, type: 3}
   gridLayer:
     serializedVersion: 2
     m_Bits: 64
   towerOffset: 0.1
+  towerSelectionCanvas: {fileID: 1716675683}
+  tower1Button: {fileID: 160329695}
+  tower2Button: {fileID: 823352459}
 --- !u!1001 &1673482355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2202,7 +2204,7 @@ GameObject:
   - component: {fileID: 1716675682}
   - component: {fileID: 1716675685}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: towerSelectionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3167,11 +3169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918f29efc3ecbf84c840c69fdd220276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 3812096164500156943, guid: dd29d3bc356f87d42944500aa54d5314, type: 3}
   gridLayer:
     serializedVersion: 2
     m_Bits: 64
   towerOffset: 0.1
+  towerSelectionCanvas: {fileID: 1716675683}
+  tower1Button: {fileID: 160329695}
+  tower2Button: {fileID: 823352459}
 --- !u!1 &2081056088
 GameObject:
   m_ObjectHideFlags: 0
