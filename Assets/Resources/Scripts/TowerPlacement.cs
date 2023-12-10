@@ -15,6 +15,8 @@ public class TowerPlacement : MonoBehaviour
     public Canvas towerSelectionCanvas;
     public Button tower1Button;
     public Button tower2Button;
+    private Vector3 selectedTowerPosition;
+    private GameObject selectedGridObject;
 
     private void Start()
     {
@@ -36,10 +38,20 @@ public class TowerPlacement : MonoBehaviour
             // Check if the ray hits an object on the grid layer
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, gridLayer))
             {
+                selectedGridObject = hit.collider.gameObject; // Store the grid object
                 Vector3 hitPoint = hit.point;
 
+                Vector3 gridObjectPosition = selectedGridObject.transform.position;
                 // Show the tower selection UI
-                ShowTowerSelectionUI(hitPoint);
+                if (!occupiedGridCells.ContainsKey(gridObjectPosition))
+                {
+                    ShowTowerSelectionUI(hitPoint);
+                }
+                else
+                {
+                    Debug.Log("Already Placed a Tower");
+                    // ShowUpgradeSelectionUI(hitPoint); // Showing a different UI to buy ugprades for the towers
+                }
             }
         }
     }
@@ -60,10 +72,11 @@ public class TowerPlacement : MonoBehaviour
 
         if (selectedTowerPrefab != null)
         {
-            // Hide the tower selection UI
-            Debug.Log("Tower prefab selected: " + towerPrefabName);
+         // Hide the tower selection UI
             towerSelectionCanvas.gameObject.SetActive(false);
-            
+        
+            // Call the PlaceTower function with the selected position
+            PlaceTower(selectedTowerPosition);
         }
         else
         {
@@ -71,24 +84,34 @@ public class TowerPlacement : MonoBehaviour
         }
     }
 
-    void PlaceTower(Vector3 towerPosition)
+    void PlaceTower(Vector3 cellPosition)
     {
-        // Check if the grid cell is already occupied
-        if (!occupiedGridCells.ContainsKey(towerPosition))
-        {
-            // Calculate the middle of the grid cell
-            Vector3 middleOfCell = towerPosition + new Vector3(0.5f, 0f, 0.5f);
+        if (selectedGridObject != null)
+            {
+            // Get the position of the selected grid object
+            Vector3 gridObjectPosition = selectedGridObject.transform.position;
 
-            // Instantiate the selected tower at the middle of the cell
-            GameObject newTower = Instantiate(selectedTowerPrefab, middleOfCell, Quaternion.identity);
+            // Check if the grid cell is already occupied
+            if (!occupiedGridCells.ContainsKey(gridObjectPosition))
+            {
+                // Calculate the middle of the grid cell, // change the Vector3 Data to fit the tower prefabs
+                Vector3 middleOfCell = gridObjectPosition + new Vector3(0f, 1.0f, 0f);
 
-            // Mark this grid cell as occupied
-            occupiedGridCells.Add(towerPosition, newTower);
+                // Instantiate the selected tower at the middle of the cell
+                GameObject newTower = Instantiate(selectedTowerPrefab, middleOfCell, Quaternion.identity);
+
+                // Mark this grid cell as occupied
+                occupiedGridCells.Add(gridObjectPosition, newTower);
+            }
+            else
+            {
+                // There's already a tower in this cell, handle accordingly (e.g., display a message)
+                Debug.Log("Cannot place tower here - cell is already occupied.");
+            }
         }
         else
         {
-            // There's already a tower in this cell, handle accordingly (e.g., display a message)
-            Debug.Log("Cannot place tower here - cell is already occupied.");
+           Debug.LogError("No selected grid object to place the tower.");
         }
     }
 }
