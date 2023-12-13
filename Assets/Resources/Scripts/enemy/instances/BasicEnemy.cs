@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class BasicEnemy : Enemy
 {
-    protected override void AttackAction()
-    {
-        throw new System.NotImplementedException();
-    }
 
     protected override void InitializeStats()
     {

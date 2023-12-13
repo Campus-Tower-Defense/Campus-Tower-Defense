@@ -14,17 +14,11 @@ public abstract class Enemy : MonoBehaviour
 
     protected float timeSinceLastAttack = 0f;
 
-    private GameObject goal;
-
-    private bool inAttackMode = false;
-
     private GameObject currencyPrefab;
 
     public event Action<GameObject> OnDeath;
 
     private List<EnemyBuff> appliedBuffs = new List<EnemyBuff>();
-
-    private NavMeshAgent navMeshAgent;
 
     public int Health => health;
     public int CurrencyDrop => currencyDrop;
@@ -32,21 +26,11 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void InitializeStats();
     protected abstract void PassiveAbility();
-    protected abstract void AttackAction();
 
-    public void SetGoal(GameObject newGoal)
-    {
-        goal = newGoal;
-    }
 
     private void Start()
     {
         InitializeStats();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        if (navMeshAgent == null)
-        {
-            Debug.LogError("NavMeshAgent not found");
-        }
         currencyPrefab = Resources.Load<GameObject>("Prefabs/General/Currency");
         if (currencyPrefab == null)
         {
@@ -57,33 +41,6 @@ public abstract class Enemy : MonoBehaviour
     private void Update()
     {
         PassiveAbility();
-
-        if (goal != null)
-        {
-            float distanceToGoal = Vector3.Distance(transform.position, goal.transform.position);
-
-            if (distanceToGoal <= attackRadius)
-            {
-                // Der Enemy ist im Angriffsmodus
-                inAttackMode = true;
-
-                // Deaktiviere den NavMeshAgent, wenn in den Angriffsmodus gewechselt wird
-                if (navMeshAgent != null)
-                {
-                    navMeshAgent.enabled = false;
-                }
-            }
-
-            if (inAttackMode)
-            {
-                timeSinceLastAttack += Time.deltaTime;
-                if (timeSinceLastAttack >= 1f / attackFrequency)
-                {
-                    AttackGoal();
-                    timeSinceLastAttack = 0f;
-                }
-            }
-        }
     }
 
     private void AttackGoal()

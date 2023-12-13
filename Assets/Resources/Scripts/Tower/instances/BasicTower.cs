@@ -7,8 +7,17 @@ public class BasicTower : Tower
 
     private bool isTowerActive = true;
 
+    public ParticleSystem shootParticles;
+
     [SerializeField]
     private GameObject top;
+
+    private void FixedUpdate() {
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("Space pressed");
+            shootParticles.Play();
+        }
+    }
 
     protected override void Start()
     {
@@ -23,16 +32,37 @@ public class BasicTower : Tower
     protected override void TowerAction()
     {
         isTowerActive = true;
-        if (enemiesInRange.Count > 0)
+        for (int i = 0; i < enemiesInRange.Count; i++)
         {
-            RotateTowardsEnemy(enemiesInRange[0].transform.position);
+
+            if (!IsInSight(enemiesInRange[i]))
+            {
+                continue;
+            }
+
+            RotateTowardsEnemy(enemiesInRange[i].transform.position);
 
             //shoot enemy
-            enemiesInRange[0].GetComponent<Enemy>().Damage(Damage);
+            shootParticles.Play();
+            enemiesInRange[i].GetComponent<Enemy>().Damage(Damage);
+            break;
         }
 
         timeSinceLastAction = Time.deltaTime;
         isTowerActive = false;
+    }
+
+    private bool IsInSight(GameObject enemy)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(top.transform.position, enemy.transform.position - top.transform.position, out hit))
+        {
+            if (hit.collider.gameObject == enemy)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void RotateTowardsEnemy(Vector3 enemyPosition)
