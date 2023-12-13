@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.AI;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class EnemyParent : MonoBehaviour
 {
     [SerializeField] protected int health = 100;
     [SerializeField] protected int currencyDrop = 10;
@@ -91,10 +91,10 @@ public abstract class Enemy : MonoBehaviour
         [SerializeField] private string buffName;
         [SerializeField] private string buffDescription;
 
-        private readonly Action<Enemy> onApply;
-        private readonly Action<Enemy> onRemove;
+        private readonly Action<EnemyParent> onApply;
+        private readonly Action<EnemyParent> onRemove;
 
-        public EnemyBuff(string name, string description, Action<Enemy> apply, Action<Enemy> remove)
+        public EnemyBuff(string name, string description, Action<EnemyParent> apply, Action<EnemyParent> remove)
         {
             buffName = name;
             buffDescription = description;
@@ -105,7 +105,7 @@ public abstract class Enemy : MonoBehaviour
         public string BuffName => buffName;
         public string BuffDescription => buffDescription;
 
-        public void Apply(Enemy enemy)
+        public void Apply(EnemyParent enemy)
         {
             if (!enemy.AppliedBuffs.Contains(this))
             {
@@ -114,7 +114,7 @@ public abstract class Enemy : MonoBehaviour
             }
         }
 
-        public void Remove(Enemy enemy)
+        public void Remove(EnemyParent enemy)
         {
             if (enemy.AppliedBuffs.Contains(this))
             {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : Enemy
+public class BasicEnemy : EnemyParent
 {
 
     protected override void InitializeStats()

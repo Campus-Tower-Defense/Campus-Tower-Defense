@@ -44,7 +44,7 @@ public class BasicTower : Tower
 
             //shoot enemy
             shootParticles.Play();
-            enemiesInRange[i].GetComponent<Enemy>().Damage(Damage);
+            enemiesInRange[i].GetComponent<EnemyParent>().Damage(Damage);
             break;
         }
 

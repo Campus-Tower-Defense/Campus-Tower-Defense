@@ -148,10 +148,10 @@ public abstract class Tower : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Enemy>() != null)
+        if (other.gameObject.GetComponent<EnemyParent>() != null)
         {
             enemiesInRange.Add(other.gameObject);
-            other.gameObject.GetComponent<Enemy>().OnDeath += HandleEnemyDeath;
+            other.gameObject.GetComponent<EnemyParent>().OnDeath += HandleEnemyDeath;
             Debug.Log($"Enemy entered range of {towerName}.");
         }
     }
@@ -162,7 +162,7 @@ public abstract class Tower : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        EnemyParent enemy = other.gameObject.GetComponent<EnemyParent>();
         if (enemy != null)
         {
             HandleEnemyDeath(enemy.gameObject);
@@ -175,7 +175,7 @@ public abstract class Tower : MonoBehaviour
     /// <param name="enemy"></param>
     private void HandleEnemyDeath(GameObject enemyGameObject)
     {
-        Enemy enemy = enemyGameObject.GetComponent<Enemy>();
+        EnemyParent enemy = enemyGameObject.GetComponent<EnemyParent>();
         if (enemy != null)
         {
             enemiesInRange.Remove(enemyGameObject);
