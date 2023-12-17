@@ -67,8 +67,9 @@ public class TowerPlacement : MonoBehaviour
 
     void SelectTowerPrefab(string towerPrefabName)
     {
+        string prefabPath = "TestPrefabs/" + towerPrefabName;
         // Find the tower prefab based on the name
-        selectedTowerPrefab = Resources.Load<GameObject>(towerPrefabName);
+        selectedTowerPrefab = Resources.Load<GameObject>(prefabPath);
 
         if (selectedTowerPrefab != null)
         {
