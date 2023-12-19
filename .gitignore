@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # Ignoriert das Ghost Asset Pack
 Assets/Resources/Ghost/*
+
+# Ignoriert das Toby Fredson Asset Pack
+Assets/Resources/Toby Fredson/*
