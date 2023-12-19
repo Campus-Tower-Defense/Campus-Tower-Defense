@@ -2128,6 +2128,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   towerOffset: 0.1
+  triggerPressed: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   towerSelectionCanvas: {fileID: 1716675683}
   tower1Button: {fileID: 160329695}
   tower2Button: {fileID: 823352459}
@@ -3173,6 +3174,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   towerOffset: 0.1
+  triggerPressed: {fileID: 0}
   towerSelectionCanvas: {fileID: 1716675683}
   tower1Button: {fileID: 160329695}
   tower2Button: {fileID: 823352459}

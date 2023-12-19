@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TowerPlacement : MonoBehaviour
 {
     public LayerMask gridLayer; // Set the layer for your grid objects
     public float towerOffset = 0.1f; // Offset to avoid z-fighting
+
+    public InputActionReference triggerPressed = null;
 
     private GameObject selectedTowerPrefab; // The selected tower prefab
     private Dictionary<Vector3, GameObject> occupiedGridCells = new Dictionary<Vector3, GameObject>();
@@ -30,7 +33,9 @@ public class TowerPlacement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        float value = triggerPressed.action.ReadValue<float>();
+        
+        if (Input.GetButtonDown("Fire1") || value == 1f)
         {
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
