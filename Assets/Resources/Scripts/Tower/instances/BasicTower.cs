@@ -94,7 +94,7 @@ public class BasicTower : Tower
     protected override void InitializeStats()
     {
         this.cost = 100;
-        this.damage = 10;
+        this.damage = 1;
         this.Frequency = 60;
         this.Range = 10;
         this.towerName = "Basic Tower";
