@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1149585778957984014}
   - component: {fileID: 4116161445415612339}
   - component: {fileID: 1606795359440404939}
+  - component: {fileID: 881079052138896278}
   m_Layer: 0
   m_Name: Currency
   m_TagString: Untagged
@@ -107,3 +108,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &881079052138896278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8977357575962873305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f835b25f86019ac458b512296d5a8735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupRadius: 2
