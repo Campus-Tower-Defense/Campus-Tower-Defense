@@ -7,11 +7,10 @@ public class BasicEnemy : EnemyParent
 
     protected override void InitializeStats()
     {
-        this.health = 100;
-        this.currencyDrop = 10;
-        this.attackRadius = 1f;
-        this.attackFrequency = 1f;
-        this.damage = 20;
+        this.health = 2;
+        this.currencyDrop = 1;
+        this.attackFrequency = 0;
+        this.damage = 1;
     }
 
     protected override void PassiveAbility()

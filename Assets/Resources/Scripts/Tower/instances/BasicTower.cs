@@ -27,6 +27,7 @@ public class BasicTower : Tower
             Debug.LogError("Tower-Top not found");
         }
         //call super start
+        this.damage = 1;
         base.Start();
     }
     protected override void TowerAction()
