@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &853128568460145689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9221781310380013060}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9221781310380013060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853128568460145689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1864, y: 0.0527, z: -0.0099}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1805960891018678585}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5004282405297596992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,6 +86,50 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7585845963574184694, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6657102594070723449, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 9221781310380013060}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7620319702442577394, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9047784101466269911}
   m_SourcePrefab: {fileID: 100100000, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
+--- !u!1 &1322896588529126275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6280576604139348419, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
+  m_PrefabInstance: {fileID: 5004282405297596992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1805960891018678585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6657102594070723449, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
+  m_PrefabInstance: {fileID: 5004282405297596992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3220663279445616562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7620319702442577394, guid: 75743e0e105e0ca478dd0a27b8b4593e, type: 3}
+  m_PrefabInstance: {fileID: 5004282405297596992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9047784101466269911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220663279445616562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c729e9a382ff3e4f8118f527b585f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+  frequency: 0
+  damage: 0
+  range: 0
+  description: 
+  towerName: 
+  enemiesInRange: []
+  appliedUpgrades: []
+  projectileSpawnPoint: {fileID: 853128568460145689}
+  projectilePrefab: {fileID: 3089855057193094523, guid: 1ad380ee26ba20d46b0beb6fc36b3cac, type: 3}
+  top: {fileID: 1322896588529126275}

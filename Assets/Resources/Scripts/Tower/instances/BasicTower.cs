@@ -7,21 +7,39 @@ public class BasicTower : Tower
 
     private bool isTowerActive = true;
 
-    public ParticleSystem shootParticles;
+    public GameObject projectileSpawnPoint;
+
+    public GameObject projectilePrefab;
 
     [SerializeField]
     private GameObject top;
 
-    private void FixedUpdate() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Debug.Log("Space pressed");
-            shootParticles.Play();
+            Shoot();
         }
+    }
+
+    private void Shoot(float distance = 10f)
+    {
+        // Already rotated towards enemy
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.identity);
+
+        // Add speed towards looking direction
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.velocity = top.transform.forward * 10;
+
+        // Destroy projectile after it traveled a certain distance
+        float timeToLive = distance / rb.velocity.magnitude;
+        Destroy(projectile, timeToLive);
     }
 
     protected override void Start()
     {
-        top = gameObject.transform.Find("Top").gameObject;
+        Debug.Log("BasicTower Start");
         if (top == null)
         {
             Debug.LogError("Tower-Top not found");
@@ -44,7 +62,7 @@ public class BasicTower : Tower
             RotateTowardsEnemy(enemiesInRange[i].transform.position);
 
             //shoot enemy
-            shootParticles.Play();
+            Shoot();
             enemiesInRange[i].GetComponent<EnemyParent>().Damage(Damage);
             break;
         }
@@ -95,8 +113,8 @@ public class BasicTower : Tower
     {
         this.cost = 100;
         this.damage = 1;
-        this.Frequency = 60;
-        this.Range = 10;
+        this.Frequency = 100f;
+        this.Range = 20;
         this.towerName = "Basic Tower";
         this.description = "A basic tower that shoots at enemies.\n" +
         "Deals 10 damage per shot.\n" +

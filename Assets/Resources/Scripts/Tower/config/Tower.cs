@@ -8,7 +8,7 @@ using System;
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField] protected int cost;
-    [SerializeField] protected int frequency;
+    [SerializeField] protected float frequency;
     [SerializeField] protected int damage;
     [SerializeField] protected int range;
     [SerializeField] protected string description;
@@ -46,13 +46,14 @@ public abstract class Tower : MonoBehaviour
 
 
 
-    public int Frequency
+    public float Frequency
     {
         get => frequency;
         set
         {
             frequency = value;
             actionInterval = 1f / (frequency / 60f);
+            Debug.Log($"Action interval changed to {actionInterval}.");
             Debug.Log($"Frequency changed to {frequency}.");
         }
     }
@@ -131,12 +132,11 @@ public abstract class Tower : MonoBehaviour
     protected virtual void Update()
     {
         timeSinceLastAction += Time.deltaTime;
-
         if (timeSinceLastAction >= actionInterval)
         {
             TowerAction();
-            timeSinceLastAction -= actionInterval;
-            Debug.Log($"{towerName} has performed an action.");
+            Debug.Log($"{towerName} has performed an action. Time since last action: {timeSinceLastAction}. Action interval: {actionInterval} seconds.");
+            timeSinceLastAction = 0;
         }
     }
 

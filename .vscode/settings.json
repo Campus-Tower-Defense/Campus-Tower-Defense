@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Campus-Tower-Defense-dev.sln"
+    "dotnet.defaultSolution": "Campus-Tower-Defense.sln"
 }
