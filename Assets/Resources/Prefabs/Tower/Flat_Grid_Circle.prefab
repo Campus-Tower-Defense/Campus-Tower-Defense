@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3153052580749622133}
   - component: {fileID: 8469457084211966018}
+  - component: {fileID: 3580227734444061773}
   m_Layer: 0
   m_Name: Flat_Grid_Circle
   m_TagString: Untagged
@@ -318,6 +319,27 @@ LODGroup:
     - renderer: {fileID: 1164692087254881808}
     - renderer: {fileID: 278591578693410170}
   m_Enabled: 1
+--- !u!65 &3580227734444061773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2639415207690050169}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.039698, y: 1, z: 4.8253555}
+  m_Center: {x: 0.03735566, y: 0, z: 0.01738739}
 --- !u!1 &3954904350822826006
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class TowerPlacement : MonoBehaviour
     private void Start()
     {
         // Set up UI button click listeners
-        tower1Button.onClick.AddListener(() => SelectTowerPrefab("Basic Tower"));
+        tower1Button.onClick.AddListener(() => SelectTowerPrefab("tower_without_ground Variant"));
         tower2Button.onClick.AddListener(() => SelectTowerPrefab("Tower2"));
 
         // Initially hide the tower selection UI
@@ -101,7 +101,7 @@ public class TowerPlacement : MonoBehaviour
             if (!occupiedGridCells.ContainsKey(gridObjectPosition))
             {
                 // Calculate the middle of the grid cell, // change the Vector3 Data to fit the tower prefabs
-                Vector3 middleOfCell = gridObjectPosition + new Vector3(0f, 0.5f, 0f);
+                Vector3 middleOfCell = gridObjectPosition; // + new Vector3(0f, 0.5f, 0f); Add if prefab needs to be higher/lower
 
                 // Instantiate the selected tower at the middle of the cell
                 GameObject newTower = Instantiate(selectedTowerPrefab, middleOfCell, Quaternion.identity);
