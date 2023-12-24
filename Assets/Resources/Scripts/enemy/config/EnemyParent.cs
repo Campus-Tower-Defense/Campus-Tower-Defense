@@ -30,6 +30,15 @@ public abstract class EnemyParent : MonoBehaviour
 
     private void Start()
     {
+
+        //check if collider is set
+        if (GetComponent<Collider>() == null)
+        {
+            Debug.LogError("Enemy has no collider");
+            Debug.Log("Adding BoxCollider");
+            gameObject.AddComponent<BoxCollider>();
+        }
+
         InitializeStats();
         currencyPrefab = Resources.Load<GameObject>("Prefabs/General/Currency");
         if (currencyPrefab == null)

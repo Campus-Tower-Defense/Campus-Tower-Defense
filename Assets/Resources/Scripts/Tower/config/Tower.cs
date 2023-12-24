@@ -68,7 +68,15 @@ public abstract class Tower : MonoBehaviour
             if (GetComponent<SphereCollider>() == null)
             {
                 Debug.LogError("Adding sphere collider, because there was none during range change.");
-                gameObject.AddComponent<SphereCollider>();
+                SphereCollider newCollider = gameObject.AddComponent<SphereCollider>();
+                newCollider.isTrigger = true;
+            }
+
+            if(GetComponent<Rigidbody>() == null)
+            {
+                Debug.LogError("Adding rigidbody, because there was none during range change.");
+                Rigidbody newRigidbody = gameObject.AddComponent<Rigidbody>();
+                newRigidbody.isKinematic = true;
             }
             GetComponent<SphereCollider>().radius = range;
             Debug.Log($"Range changed to {range}.");
@@ -135,7 +143,7 @@ public abstract class Tower : MonoBehaviour
         if (timeSinceLastAction >= actionInterval)
         {
             TowerAction();
-            Debug.Log($"{towerName} has performed an action. Time since last action: {timeSinceLastAction}. Action interval: {actionInterval} seconds.");
+           // Debug.Log($"{towerName} has performed an action. Time since last action: {timeSinceLastAction}. Action interval: {actionInterval} seconds.");
             timeSinceLastAction = 0;
         }
     }
@@ -148,6 +156,7 @@ public abstract class Tower : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Trigger entered by {other.gameObject.name}.");
         if (other.gameObject.GetComponent<EnemyParent>() != null)
         {
             enemiesInRange.Add(other.gameObject);
@@ -162,6 +171,7 @@ public abstract class Tower : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log($"Trigger exited by {other.gameObject.name}.");
         EnemyParent enemy = other.gameObject.GetComponent<EnemyParent>();
         if (enemy != null)
         {

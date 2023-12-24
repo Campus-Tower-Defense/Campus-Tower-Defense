@@ -51,18 +51,25 @@ public class BasicTower : Tower
     protected override void TowerAction()
     {
         isTowerActive = true;
+        Debug.Log("Action?: " + enemiesInRange.Count);
         for (int i = 0; i < enemiesInRange.Count; i++)
         {
 
             if (!IsInSight(enemiesInRange[i]))
             {
+                Debug.Log("Enemy not in sight");
                 continue;
             }
 
+            //rotate towards enemy
             RotateTowardsEnemy(enemiesInRange[i].transform.position);
 
             //shoot enemy
+            Debug.Log("Shoot");
             Shoot();
+
+            //damage enemy
+            Debug.Log("Damage");
             enemiesInRange[i].GetComponent<EnemyParent>().Damage(Damage);
             break;
         }
@@ -73,6 +80,9 @@ public class BasicTower : Tower
 
     private bool IsInSight(GameObject enemy)
     {
+        //TODO fix this
+        return true;
+        /*
         RaycastHit hit;
         if (Physics.Raycast(top.transform.position, enemy.transform.position - top.transform.position, out hit))
         {
@@ -81,11 +91,12 @@ public class BasicTower : Tower
                 return true;
             }
         }
-        return false;
+        return false;*/
     }
 
     private void RotateTowardsEnemy(Vector3 enemyPosition)
     {
+        Debug.Log("Rotate towards enemy");
         // Berechne die Richtung zum Gegner auf der 2D-Ebene
         Vector3 direction = enemyPosition - top.transform.position;
         direction.y = 0f; // Setze die y-Komponente auf 0, um nur auf der horizontalen Ebene zu rotieren
