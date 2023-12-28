@@ -14,6 +14,11 @@ public class BasicTower : Tower
     [SerializeField]
     private GameObject top;
 
+    [SerializeField]
+    private float projectileSpeed = 100f;
+
+    private AudioSource audioSource;
+
     private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -23,22 +28,35 @@ public class BasicTower : Tower
         }
     }
 
-    private void Shoot(float distance = 10f)
+    private void Shoot(float distance = 100f, Vector3? target = null)
     {
         // Already rotated towards enemy
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.identity);
 
         // Add speed towards looking direction
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.velocity = top.transform.forward * 10;
+        Debug.Log("Rotation: " + top.transform.rotation.eulerAngles);
+        if (target != null)
+        {
+            Vector3 directionToTarget = ((Vector3)target - projectile.transform.position).normalized;
+            projectile.transform.forward = directionToTarget;
+            rb.velocity = directionToTarget * projectileSpeed;
+        }
+        else
+        {
+            rb.velocity = top.transform.forward * projectileSpeed;
+        }
 
-        // Destroy projectile after it traveled a certain distance
-        float timeToLive = distance / rb.velocity.magnitude;
-        Destroy(projectile, timeToLive);
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
     }
 
     protected override void Start()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
         Debug.Log("BasicTower Start");
         if (top == null)
         {
@@ -66,7 +84,7 @@ public class BasicTower : Tower
 
             //shoot enemy
             Debug.Log("Shoot");
-            Shoot();
+            Shoot(target: enemiesInRange[i].transform.position);
 
             //damage enemy
             Debug.Log("Damage");
@@ -99,13 +117,16 @@ public class BasicTower : Tower
         Debug.Log("Rotate towards enemy");
         // Berechne die Richtung zum Gegner auf der 2D-Ebene
         Vector3 direction = enemyPosition - top.transform.position;
-        direction.y = 0f; // Setze die y-Komponente auf 0, um nur auf der horizontalen Ebene zu rotieren
 
+        Debug.Log("Direction: " + direction);
+        direction.y = 0f; // Setze die y-Komponente auf 0, um nur auf der horizontalen Ebene zu rotieren
+        direction = Quaternion.Euler(0f, 360f-90f, 0f) * direction;
         // Drehe das Objekt top in die berechnete Richtung
         if (direction != Vector3.zero)
         {
+            float maxRotation = Time.deltaTime * this.frequency * 1000f;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            top.transform.rotation = Quaternion.RotateTowards(top.transform.rotation, targetRotation, Time.deltaTime * this.frequency);
+            top.transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
         }
     }
 

@@ -1216,6 +1216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6857958419531590151}
   - component: {fileID: 763441519253818953}
+  - component: {fileID: 2661016840731420337}
   m_Layer: 0
   m_Name: Ghost-Cyan
   m_TagString: Untagged
@@ -1274,6 +1275,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2661016840731420337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085701546234379872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453ac166a8abc54ba0f76a30319377b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+  currencyDrop: 1
+  attackRadius: 1
+  attackFrequency: 1
+  damage: 2
 --- !u!1 &6120089184679015011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,7 +1622,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9151575544256511511}
   - component: {fileID: 8688410309983585961}
-  - component: {fileID: 8608997460630064444}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -1727,23 +1744,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.008104622, y: -0.01057107, z: -0.00000023841858}
     m_Extent: {x: 0.76622266, y: 0.20007983, z: 0.9013996}
   m_DirtyAABB: 0
---- !u!114 &8608997460630064444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7791176984905664998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453ac166a8abc54ba0f76a30319377b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  currencyDrop: 1
-  attackRadius: 1
-  attackFrequency: 1
-  damage: 2
 --- !u!1 &7856703426727824159
 GameObject:
   m_ObjectHideFlags: 0
