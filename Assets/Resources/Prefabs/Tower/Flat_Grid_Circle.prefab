@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 3153052580749622133}
   - component: {fileID: 8469457084211966018}
   - component: {fileID: 3580227734444061773}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flat_Grid_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
