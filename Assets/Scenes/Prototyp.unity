@@ -2855,6 +2855,8 @@ MonoBehaviour:
   - {fileID: 1979956358}
   - {fileID: 1029251357}
   - {fileID: 1253360206}
+  spawnInterval: 1
+  amountEnemy: 5
 --- !u!4 &983794368 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4412514259526401202, guid: 631009fae02c2844497dc07e98f8ec3d, type: 3}
