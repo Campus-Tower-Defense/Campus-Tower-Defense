@@ -5,10 +5,19 @@ public class EnemyMovement : MonoBehaviour
    public float speed = 10f;
    private Transform target;
    private int wavepointIndex = 0;
+   private Waypoints waypoints;
 
-   void Start()
+   void Awake()
    {
-      target = Waypoints.points[0];
+      waypoints = GetComponentInParent<Waypoints>();
+      if (waypoints != null)
+      {
+         target = waypoints.points[0];
+      }
+      else
+      {
+         Debug.LogError("Waypoints script not found in parent objects.");
+      }
    }
 
    void Update()
@@ -28,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
    // Nächsten Wegpunkt als Ziel nehmen
    void GetNextWayPoint()
    {
-      if (wavepointIndex >= Waypoints.points.Length - 1)
+      if (wavepointIndex >= waypoints.points.Length - 1)
       {
          Destroy(gameObject);
          // Man muss hier ein "return" einfügen, weil die "Destroy()" etwas Zeit braucht, aber das Programm..
@@ -36,6 +45,6 @@ public class EnemyMovement : MonoBehaviour
          return;
       }
       wavepointIndex++;
-      target = Waypoints.points[wavepointIndex];
+      target = waypoints.points[wavepointIndex];
    }
 }

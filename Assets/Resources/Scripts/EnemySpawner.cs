@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (Transform spawnPoint in spawnPoints)
         {
             GameObject enemyInstance = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            enemyInstance.transform.SetParent(spawnPoint);
             enemyInstance.AddComponent<EnemyMovement>();
         }
     }

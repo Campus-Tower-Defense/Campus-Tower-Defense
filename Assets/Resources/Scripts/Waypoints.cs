@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class Waypoints : MonoBehaviour
 {
-   // "Transform[]": Liste von Game Objects
-   public static Transform[] points;
+    // "Transform[]": Liste von Game Objects
+    public Transform[] points;
 
-   private void Awake()
-   {
-      points = new Transform[transform.childCount];
-      for (int i = 0; i < points.Length; i++)
-      {
-         points[i] = transform.GetChild(i);
-      }
-   }
+    private void Awake()
+    {
+        // Anzahl der Kinderobjekte des aktuellen Parent-Objekts
+        int childCount = transform.childCount;
+        points = new Transform[childCount];
+
+        for (int i = 0; i < childCount; i++)
+        {
+            points[i] = transform.GetChild(i);
+        }
+    }
 }
