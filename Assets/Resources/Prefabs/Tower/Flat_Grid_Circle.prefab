@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5199468457670184133}
   - component: {fileID: 528714353596822359}
   - component: {fileID: 5197218071778276905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StoneCircleFullCATA_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2650465158461315309}
   - component: {fileID: 297376824533954540}
   - component: {fileID: 1164692087254881808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleStonesFullCATAM_LOD1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 530641694913496437}
   - component: {fileID: 7912330095777556695}
   - component: {fileID: 7996568134016490462}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleStonesFullCATAM_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 3084173949100358434}
   - component: {fileID: 4968921289284669005}
   - component: {fileID: 5746658826335073264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StoneCircleFullCATA_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 6115555867966918714}
   - component: {fileID: 7141435534875727157}
   - component: {fileID: 1184263454267503585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleStonesFullCATAM_LOD0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 4955309219955286137}
   - component: {fileID: 1389908704897286604}
   - component: {fileID: 278591578693410170}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleStonesFullCATAM_LOD1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 4431653662638508527}
   - component: {fileID: 2992682855077913062}
   - component: {fileID: 6395345666391032313}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleStonesFullCATAM_LOD0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 1347121361735954830}
   - component: {fileID: 4537101247669452114}
   - component: {fileID: 5512525526843958301}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CircleStonesFullCATAM_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

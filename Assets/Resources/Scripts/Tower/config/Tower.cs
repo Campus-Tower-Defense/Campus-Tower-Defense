@@ -53,8 +53,8 @@ public abstract class Tower : MonoBehaviour
         {
             frequency = value;
             actionInterval = 1f / (frequency / 60f);
-            Debug.Log($"Action interval changed to {actionInterval}.");
-            Debug.Log($"Frequency changed to {frequency}.");
+           // Debug.Log($"Action interval changed to {actionInterval}.");
+           // Debug.Log($"Frequency changed to {frequency}.");
         }
     }
     public int Cost => cost;
@@ -67,19 +67,19 @@ public abstract class Tower : MonoBehaviour
             range = value;
             if (GetComponent<SphereCollider>() == null)
             {
-                Debug.LogError("Adding sphere collider, because there was none during range change.");
+               // Debug.LogError("Adding sphere collider, because there was none during range change.");
                 SphereCollider newCollider = gameObject.AddComponent<SphereCollider>();
                 newCollider.isTrigger = true;
             }
 
             if(GetComponent<Rigidbody>() == null)
             {
-                Debug.LogError("Adding rigidbody, because there was none during range change.");
+              //  Debug.LogError("Adding rigidbody, because there was none during range change.");
                 Rigidbody newRigidbody = gameObject.AddComponent<Rigidbody>();
                 newRigidbody.isKinematic = true;
             }
             GetComponent<SphereCollider>().radius = range;
-            Debug.Log($"Range changed to {range}.");
+           // Debug.Log($"Range changed to {range}.");
         }
     }
 
@@ -96,13 +96,13 @@ public abstract class Tower : MonoBehaviour
         Upgrade upgrade = availableUpgrades[upgradeId];
         if (upgrade == null)
         {
-            Debug.LogError($"Upgrade with id {upgradeId} does not exist.");
+           // Debug.LogError($"Upgrade with id {upgradeId} does not exist.");
             return;
         }
 
         if (appliedUpgrades.Contains(upgrade))
         {
-            Debug.LogError($"Upgrade with id {upgradeId} is already applied.");
+           // Debug.LogError($"Upgrade with id {upgradeId} is already applied.");
             return;
         }
 
@@ -156,12 +156,12 @@ public abstract class Tower : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Trigger entered by {other.gameObject.name}.");
+       // Debug.Log($"Trigger entered by {other.gameObject.name}.");
         if (other.gameObject.GetComponent<EnemyParent>() != null)
         {
             enemiesInRange.Add(other.gameObject);
             other.gameObject.GetComponent<EnemyParent>().OnDeath += HandleEnemyDeath;
-            Debug.Log($"Enemy entered range of {towerName}.");
+           // Debug.Log($"Enemy entered range of {towerName}.");
         }
     }
 
@@ -171,7 +171,7 @@ public abstract class Tower : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log($"Trigger exited by {other.gameObject.name}.");
+       // Debug.Log($"Trigger exited by {other.gameObject.name}.");
         EnemyParent enemy = other.gameObject.GetComponent<EnemyParent>();
         if (enemy != null)
         {
@@ -190,7 +190,7 @@ public abstract class Tower : MonoBehaviour
         {
             enemiesInRange.Remove(enemyGameObject);
             enemy.OnDeath -= HandleEnemyDeath;
-            Debug.Log($"Enemy left range of {towerName}.");
+           // Debug.Log($"Enemy left range of {towerName}.");
 
         }
         else

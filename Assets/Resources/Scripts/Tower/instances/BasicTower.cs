@@ -114,7 +114,7 @@ public class BasicTower : Tower
 
     private void RotateTowardsEnemy(Vector3 enemyPosition)
     {
-        Debug.Log("Rotate towards enemy");
+       // Debug.Log("Rotate towards enemy");
         // Berechne die Richtung zum Gegner auf der 2D-Ebene
         Vector3 direction = enemyPosition - top.transform.position;
 
@@ -155,5 +155,10 @@ public class BasicTower : Tower
         "Attack Speed: 1\n" +
         "Frequency: 60\n" +
         "Fires at the first enemy in range.";
+    }
+
+    public int GetTowerCost()
+    {
+        return cost; 
     }
 }
