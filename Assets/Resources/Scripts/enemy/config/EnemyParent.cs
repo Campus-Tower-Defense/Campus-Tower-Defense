@@ -69,6 +69,7 @@ public abstract class EnemyParent : MonoBehaviour
 
     private void Die()
     {
+        //TODO also drop 3 types of ammo
         OnDeath?.Invoke(this.gameObject);
 
         for (int i = 0; i < currencyDrop; i++)
