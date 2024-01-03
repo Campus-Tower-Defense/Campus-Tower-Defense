@@ -23,7 +23,7 @@ public class BasicTower : Tower
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Space pressed");
+           // Debug.Log("Space pressed");
             Shoot();
         }
     }
@@ -35,7 +35,7 @@ public class BasicTower : Tower
 
         // Add speed towards looking direction
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        Debug.Log("Rotation: " + top.transform.rotation.eulerAngles);
+       // Debug.Log("Rotation: " + top.transform.rotation.eulerAngles);
         if (target != null)
         {
             Vector3 directionToTarget = ((Vector3)target - projectile.transform.position).normalized;
@@ -57,7 +57,7 @@ public class BasicTower : Tower
     protected override void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        Debug.Log("BasicTower Start");
+       // Debug.Log("BasicTower Start");
         if (top == null)
         {
             Debug.LogError("Tower-Top not found");
@@ -69,7 +69,7 @@ public class BasicTower : Tower
     protected override void TowerAction()
     {
         isTowerActive = true;
-        Debug.Log("Action?: " + enemiesInRange.Count);
+       // Debug.Log("Action?: " + enemiesInRange.Count);
         for (int i = 0; i < enemiesInRange.Count; i++)
         {
 
@@ -83,11 +83,11 @@ public class BasicTower : Tower
             RotateTowardsEnemy(enemiesInRange[i].transform.position);
 
             //shoot enemy
-            Debug.Log("Shoot");
+           // Debug.Log("Shoot");
             Shoot(target: enemiesInRange[i].transform.position);
 
             //damage enemy
-            Debug.Log("Damage");
+           // Debug.Log("Damage");
             enemiesInRange[i].GetComponent<EnemyParent>().Damage(Damage);
             break;
         }
@@ -118,7 +118,7 @@ public class BasicTower : Tower
         // Berechne die Richtung zum Gegner auf der 2D-Ebene
         Vector3 direction = enemyPosition - top.transform.position;
 
-        Debug.Log("Direction: " + direction);
+      //  Debug.Log("Direction: " + direction);
         direction.y = 0f; // Setze die y-Komponente auf 0, um nur auf der horizontalen Ebene zu rotieren
         direction = Quaternion.Euler(0f, 360f-90f, 0f) * direction;
         // Drehe das Objekt top in die berechnete Richtung

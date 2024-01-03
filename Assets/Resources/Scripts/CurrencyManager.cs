@@ -1,10 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public static class CurrencyManager
+public class CurrencyManager : MonoBehaviour
 {
-    private static int playerCurrency = 20;
+    private static int playerCurrency;
+    public Text text;
+
+    void Start()
+    {
+        playerCurrency = 20;
+        text.text = playerCurrency.ToString();
+    }
+
+    void Update()
+    {
+        text.text = playerCurrency.ToString();
+    }
 
     public static int GetCurrentCurrency()
     {
@@ -14,7 +28,6 @@ public static class CurrencyManager
     public static void AddCurrency(int amount)
     {
         playerCurrency += amount;
-        // update UI element logic here
     }
 
     public static bool DeductCurrency(int amount)
@@ -22,7 +35,6 @@ public static class CurrencyManager
         if (playerCurrency >= amount)
         {
             playerCurrency -= amount;
-             // update UI element logic here
             return true;
         }
         else

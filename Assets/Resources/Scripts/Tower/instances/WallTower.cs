@@ -43,7 +43,7 @@ public class WallTower : Tower
     protected override void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        Debug.Log("WallTower Start");
+        //Debug.Log("WallTower Start");
         if (top == null)
         {
             Debug.LogError("Tower-Top not found");
@@ -61,7 +61,7 @@ public class WallTower : Tower
     protected override void TowerAction()
     {
         isTowerActive = true;
-        Debug.Log("Action?: " + enemiesInRange.Count);
+       // Debug.Log("Action?: " + enemiesInRange.Count);
         for (int i = 0; i < enemiesInRange.Count; i++)
         {
 
@@ -75,11 +75,11 @@ public class WallTower : Tower
             RotateTowardsEnemy(enemiesInRange[i].transform.position);
 
             //shoot enemy
-            Debug.Log("Shoot");
+           // Debug.Log("Shoot");
             Shoot(target: enemiesInRange[i].transform.position);
 
             //damage enemy
-            Debug.Log("Damage");
+          //  Debug.Log("Damage");
             enemiesInRange[i].GetComponent<EnemyParent>().Damage(Damage);
             break;
         }
@@ -106,11 +106,11 @@ public class WallTower : Tower
 
     private void RotateTowardsEnemy(Vector3 enemyPosition)
     {
-        Debug.Log("Rotate towards enemy");
+       // Debug.Log("Rotate towards enemy");
         // Berechne die Richtung zum Gegner auf der 2D-Ebene
         Vector3 direction = enemyPosition - top.transform.position;
 
-        Debug.Log("Direction: " + direction);
+     //   Debug.Log("Direction: " + direction);
         direction.y = 0f; // Setze die y-Komponente auf 0, um nur auf der horizontalen Ebene zu rotieren
         direction = Quaternion.Euler(0f, 360f - 90f, 0f) * direction;
         // Drehe das Objekt top in die berechnete Richtung
