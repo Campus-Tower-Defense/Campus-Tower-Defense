@@ -12,12 +12,12 @@ public class CurrencyManager : MonoBehaviour
     void Start()
     {
         playerCurrency = 20;
-        text.text = playerCurrency.ToString();
+        text.text = playerCurrency.ToString() + "$";
     }
 
     void Update()
     {
-        text.text = playerCurrency.ToString();
+        text.text = playerCurrency.ToString() + "$";
     }
 
     public static int GetCurrentCurrency()
