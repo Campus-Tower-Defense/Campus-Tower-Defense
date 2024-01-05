@@ -24,6 +24,6 @@ public class Money : MonoBehaviour
 
     void AddMoneyToPlayer()
     {
-        //TODO: add money to player
+        CurrencyManager.AddCurrency(10);
     }
 }
