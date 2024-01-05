@@ -101,8 +101,8 @@ public class QuestManager : MonoBehaviour
     /// </summary>
     private void CompleteKillerQuest()
     {
+        CurrencyManager.AddCurrency(1000);
         Debug.Log("Killer Quest completed! Reward unlocked.");
-        //TODO Additional reward logic here
     }
 
     /// <summary>
@@ -114,6 +114,17 @@ public class QuestManager : MonoBehaviour
         //TODO Additional reward logic here
     }
 
+    public string GetCurrentQuest()
+    {
+        foreach (KeyValuePair<string, Quest> entry in quests)
+        {
+            if (!entry.Value.IsDone)
+            {
+                return entry.Value.ID;
+            }
+        }
+        return null;
+    }
     internal class Quest
     {
         public string ID { get; private set; }
@@ -126,6 +137,13 @@ public class QuestManager : MonoBehaviour
         public delegate void CompletionAction();
         public CompletionAction OnComplete;
 
+        public bool IsDone
+        {
+            get
+            {
+                return Progress >= Target;
+            }
+        }
         public Quest(string id, string title, string description, string taskDescription, string rewardDescription, int progress, int target, CompletionAction onComplete)
         {
             ID = id;
